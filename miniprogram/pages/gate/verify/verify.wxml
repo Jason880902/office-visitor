@@ -1,0 +1,73 @@
+<!--pages/gate/verify/verify.wxml - 通行码验证页-->
+<view class="container">
+	<view class="card verify-card" wx:if="{{loading}}">
+		<view class="loading-icon">
+			<view class="spinner"></view>
+		</view>
+		<text class="loading-text">核验中...</text>
+	</view>
+
+	<block wx:if="{{!loading}}">
+		<!-- 核验成功 -->
+		<view class="card result-card" wx:if="{{result.success}}">
+			<view class="result-header success">
+				<image src="/images/status/approved.png" mode="aspectFit" />
+				<text>核验通过</text>
+			</view>
+			<view class="result-body">
+				<view class="info-row">
+					<text class="label">访客姓名:</text>
+					<text class="value">{{result.visitorName}}</text>
+				</view>
+				<view class="info-row" wx:if="{{result.visitorCompany}}">
+					<text class="label">所属公司:</text>
+					<text class="value">{{result.visitorCompany}}</text>
+				</view>
+				<view class="info-row">
+					<text class="label">被访人:</text>
+					<text class="value">{{result.hostName}}</text>
+				</view>
+				<view class="info-row" wx:if="{{result.hostFloor}}">
+					<text class="label">所在楼层:</text>
+					<text class="value">{{result.hostFloor}}楼</text>
+				</view>
+				<view class="info-row">
+					<text class="label">来访日期:</text>
+					<text class="value">{{result.visitDate}}</text>
+				</view>
+			</view>
+		</view>
+
+		<!-- 核验失败 -->
+		<view class="card result-card" wx:else>
+			<view class="result-header fail">
+				<image src="/images/status/rejected.png" mode="aspectFit" />
+				<text>核验失败</text>
+			</view>
+			<view class="result-body">
+				<view class="fail-message">{{result.message}}</view>
+			</view>
+		</view>
+
+		<!-- 预约信息 -->
+		<view class="card" wx:if="{{detail}}">
+			<view class="section-title">预约详情</view>
+			<view class="detail-item">
+				<text class="detail-label">预约编号</text>
+				<text class="detail-value">{{detail.orderNo}}</text>
+			</view>
+			<view class="detail-item">
+				<text class="detail-label">预约状态</text>
+				<text class="detail-value">{{detail.statusText}}</text>
+			</view>
+			<view class="detail-item">
+				<text class="detail-label">来访日期</text>
+				<text class="detail-value">{{detail.visitDate}} {{detail.visitTime}}</text>
+			</view>
+		</view>
+	</block>
+
+	<view class="action-bar">
+		<button class="btn-primary" bindtap="onBack">返回首页</button>
+	</view>
+</view>

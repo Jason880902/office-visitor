@@ -1,0 +1,88 @@
+<!--pages/visitor/apply/apply.wxml - 访客预约申请-->
+<view class="container">
+	<view class="card">
+		<view class="section-title">访客信息</view>
+
+		<view class="form-item">
+			<text class="form-label">访客姓名 <text class="required">*</text></text>
+			<input class="form-input" placeholder="请输入访客姓名" value="{{form.visitorName}}" bindinput="onInput" data-field="visitorName" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">手机号码 <text class="required">*</text></text>
+			<input class="form-input" type="number" placeholder="请输入手机号码" value="{{form.visitorPhone}}" bindinput="onInput" data-field="visitorPhone" maxlength="11" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">所属公司</text>
+			<input class="form-input" placeholder="请输入所属公司" value="{{form.visitorCompany}}" bindinput="onInput" data-field="visitorCompany" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">车牌号码</text>
+			<input class="form-input" placeholder="如有车辆请输入车牌号" value="{{form.carNumber}}" bindinput="onInput" data-field="carNumber" />
+		</view>
+	</view>
+
+	<view class="card">
+		<view class="section-title">来访信息</view>
+
+		<view class="form-item">
+			<text class="form-label">来访日期 <text class="required">*</text></text>
+			<picker mode="date" value="{{form.visitDate}}" start="{{today}}" bindchange="onDateChange">
+				<view class="form-input picker-value {{form.visitDate ? '' : 'placeholder'}}">
+					{{form.visitDate || '请选择来访日期'}}
+				</view>
+			</picker>
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">来访时间</text>
+			<picker mode="time" value="{{form.visitTime}}" bindchange="onTimeChange">
+				<view class="form-input picker-value {{form.visitTime ? '' : 'placeholder'}}">
+					{{form.visitTime || '请选择来访时间'}}
+				</view>
+			</picker>
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">来访事由 <text class="required">*</text></text>
+			<textarea class="form-textarea" placeholder="请简要描述来访事由" value="{{form.visitReason}}" bindinput="onInput" data-field="visitReason" />
+		</view>
+	</view>
+
+	<view class="card">
+		<view class="section-title">被访人信息</view>
+
+		<view class="form-item">
+			<text class="form-label">被访人 <text class="required">*</text></text>
+			<input class="form-input" placeholder="请输入被访人姓名" value="{{form.hostName}}" bindinput="onInput" data-field="hostName" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">被访人手机 <text class="required">*</text></text>
+			<input class="form-input" type="number" placeholder="请输入被访人手机号" value="{{form.hostPhone}}" bindinput="onInput" data-field="hostPhone" maxlength="11" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">所在公司</text>
+			<input class="form-input" placeholder="请输入被访人所在公司" value="{{form.hostCompany}}" bindinput="onInput" data-field="hostCompany" />
+		</view>
+
+		<view class="form-item">
+			<text class="form-label">所在楼层</text>
+			<input class="form-input" placeholder="请输入所在楼层" value="{{form.hostFloor}}" bindinput="onInput" data-field="hostFloor" />
+		</view>
+	</view>
+
+	<view class="card">
+		<view class="form-item">
+			<text class="form-label">备注</text>
+			<textarea class="form-textarea" placeholder="其他需要说明的信息" value="{{form.remark}}" bindinput="onInput" data-field="remark" />
+		</view>
+	</view>
+
+	<view class="submit-area">
+		<button class="btn-primary" bindtap="onSubmit" loading="{{submitting}}">提交预约</button>
+	</view>
+</view>

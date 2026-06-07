@@ -1,0 +1,50 @@
+<!--pages/admin/visitors/visitors.wxml - 访客管理-->
+<view class="container">
+	<!-- 搜索栏 -->
+	<view class="search-bar">
+		<input class="search-input" placeholder="搜索访客姓名/手机号/被访人" value="{{keyword}}" bindinput="onSearchInput" />
+		<button class="btn-primary btn-search" bindtap="onSearch">搜索</button>
+	</view>
+
+	<!-- 筛选栏 -->
+	<view class="filter-bar">
+		<view class="filter-item {{currentStatus === -1 ? 'active' : ''}}" bindtap="onFilter" data-status="-1">全部</view>
+		<view class="filter-item {{currentStatus === 0 ? 'active' : ''}}" bindtap="onFilter" data-status="0">待审批</view>
+		<view class="filter-item {{currentStatus === 1 ? 'active' : ''}}" bindtap="onFilter" data-status="1">已通过</view>
+		<view class="filter-item {{currentStatus === 5 ? 'active' : ''}}" bindtap="onFilter" data-status="5">已来访</view>
+	</view>
+
+	<!-- 列表 -->
+	<view class="list-container">
+		<block wx:if="{{list.length > 0}}">
+			<view class="card visitor-card" wx:for="{{list}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+				<view class="card-header">
+					<view class="visitor-info">
+						<text class="visitor-name">{{item.visitorName}}</text>
+						<text class="visitor-phone">{{item.visitorPhone}}</text>
+					</view>
+					<text class="status-tag status-{{item.statusClass}}">{{item.statusText}}</text>
+				</view>
+				<view class="card-body">
+					<view class="info-row">
+						<text class="label">来访日期:</text>
+						<text class="value">{{item.visitDate}}</text>
+					</view>
+					<view class="info-row">
+						<text class="label">被访人:</text>
+						<text class="value">{{item.hostName}} {{item.hostFloor ? item.hostFloor + '楼' : ''}}</text>
+					</view>
+				</view>
+			</view>
+		</block>
+
+		<view class="empty-state" wx:if="{{!loading && list.length === 0}}">
+			<text>暂无数据</text>
+		</view>
+
+		<view class="load-more" wx:if="{{hasMore}}">
+			<text wx:if="{{loading}}">加载中...</text>
+			<text wx:else bindtap="loadMore">加载更多</text>
+		</view>
+	</view>
+</view>

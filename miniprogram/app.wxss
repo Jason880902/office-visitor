@@ -1,0 +1,157 @@
+/* app.wxss - 全局样式 */
+page {
+	background-color: #f6f6f6;
+	font-size: 28rpx;
+	color: #333333;
+}
+
+.container {
+	padding: 20rpx;
+}
+
+/* 通用卡片样式 */
+.card {
+	background: #ffffff;
+	border-radius: 16rpx;
+	padding: 30rpx;
+	margin-bottom: 20rpx;
+	box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+/* 按钮样式 */
+.btn-primary {
+	background: #1890FF;
+	color: #ffffff;
+	border-radius: 8rpx;
+	padding: 20rpx 40rpx;
+	text-align: center;
+	font-size: 30rpx;
+}
+
+.btn-primary:active {
+	opacity: 0.8;
+}
+
+.btn-danger {
+	background: #FF4D4F;
+	color: #ffffff;
+	border-radius: 8rpx;
+	padding: 20rpx 40rpx;
+	text-align: center;
+	font-size: 30rpx;
+}
+
+.btn-success {
+	background: #52C41A;
+	color: #ffffff;
+	border-radius: 8rpx;
+	padding: 20rpx 40rpx;
+	text-align: center;
+	font-size: 30rpx;
+}
+
+/* 表单样式 */
+.form-item {
+	display: flex;
+	align-items: center;
+	padding: 20rpx 0;
+	border-bottom: 1rpx solid #f0f0f0;
+}
+
+.form-label {
+	width: 180rpx;
+	color: #666666;
+	font-size: 28rpx;
+}
+
+.form-input {
+	flex: 1;
+	padding: 10rpx;
+}
+
+/* 状态标签 */
+.status-tag {
+	display: inline-block;
+	padding: 4rpx 16rpx;
+	border-radius: 4rpx;
+	font-size: 24rpx;
+}
+
+.status-pending {
+	background: #FFF7E6;
+	color: #FA8C16;
+}
+
+.status-approved {
+	background: #F6FFED;
+	color: #52C41A;
+}
+
+.status-rejected {
+	background: #FFF2F0;
+	color: #FF4D4F;
+}
+
+.status-visited {
+	background: #E6F7FF;
+	color: #1890FF;
+}
+
+.status-cancelled {
+	background: #F5F5F5;
+	color: #999999;
+}
+
+.status-expired {
+	background: #F5F5F5;
+	color: #999999;
+}
+
+/* 列表项 */
+.list-item {
+	background: #ffffff;
+	padding: 24rpx;
+	margin-bottom: 16rpx;
+	border-radius: 12rpx;
+}
+
+.list-item-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16rpx;
+}
+
+.list-item-body {
+	color: #666666;
+	font-size: 26rpx;
+	line-height: 1.8;
+}
+
+.list-item-footer {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 16rpx;
+	padding-top: 16rpx;
+	border-top: 1rpx solid #f0f0f0;
+}
+
+/* 空状态 */
+.empty-state {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 100rpx 0;
+}
+
+.empty-state image {
+	width: 200rpx;
+	height: 200rpx;
+	margin-bottom: 20rpx;
+}
+
+.empty-state text {
+	color: #999999;
+	font-size: 28rpx;
+}

@@ -1,0 +1,75 @@
+<!--pages/gate/scan/scan.wxml - 扫码核验-->
+<view class="container">
+	<view class="card scan-card">
+		<view class="scan-icon">
+			<image src="/images/scan.png" mode="aspectFit" />
+		</view>
+		<view class="scan-tip">请扫描访客通行二维码进行核验</view>
+		<button class="btn-primary scan-btn" bindtap="onScan">开始扫码</button>
+		<button class="btn-secondary scan-btn" bindtap="onShowManualInput" style="margin-top: 20rpx;">手动输入预约ID</button>
+	</view>
+
+	<!-- 手动输入弹窗 -->
+	<view class="modal-mask" wx:if="{{showManualInput}}">
+		<view class="modal-content">
+			<view class="modal-header">
+				<text class="modal-title">手动输入预约ID</text>
+				<text class="modal-close" bindtap="onHideManualInput">×</text>
+			</view>
+			<view class="modal-body">
+				<input class="input-field" placeholder="请输入预约ID" value="{{manualId}}" bindinput="onManualIdInput" focus="{{showManualInput}}" />
+			</view>
+			<view class="modal-footer">
+				<button class="btn-cancel" bindtap="onHideManualInput">取消</button>
+				<button class="btn-primary" bindtap="onManualVerify">确认核验</button>
+			</view>
+		</view>
+	</view>
+
+	<!-- 核验结果 -->
+	<view class="card result-card" wx:if="{{result}}">
+		<view class="result-header {{result.success ? 'success' : 'fail'}}">
+			<image src="/images/status/{{result.success ? 'approved' : 'rejected'}}.png" mode="aspectFit" />
+			<text>{{result.success ? '核验通过' : '核验失败'}}</text>
+		</view>
+
+		<view class="result-body" wx:if="{{result.success}}">
+			<view class="info-row">
+				<text class="label">访客姓名:</text>
+				<text class="value">{{result.visitorName}}</text>
+			</view>
+			<view class="info-row" wx:if="{{result.visitorCompany}}">
+				<text class="label">所属公司:</text>
+				<text class="value">{{result.visitorCompany}}</text>
+			</view>
+			<view class="info-row">
+				<text class="label">被访人:</text>
+				<text class="value">{{result.hostName}}</text>
+			</view>
+			<view class="info-row" wx:if="{{result.hostFloor}}">
+				<text class="label">所在楼层:</text>
+				<text class="value">{{result.hostFloor}}楼</text>
+			</view>
+		</view>
+
+		<view class="result-body" wx:else>
+			<view class="fail-message">{{result.message}}</view>
+		</view>
+
+		<view class="result-footer">
+			<button class="btn-primary" bindtap="onScan">继续核验</button>
+		</view>
+	</view>
+
+	<!-- 最近核验记录 -->
+	<view class="card" wx:if="{{recentRecords.length > 0}}">
+		<view class="section-title">最近核验记录</view>
+		<view class="record-item" wx:for="{{recentRecords}}" wx:key="_id">
+			<view class="record-info">
+				<text class="record-name">{{item.visitorName}}</text>
+				<text class="record-time">{{item.createTime}}</text>
+			</view>
+			<text class="record-result {{item.result}}">{{item.result === 'success' ? '通过' : '失败'}}</text>
+		</view>
+	</view>
+</view>

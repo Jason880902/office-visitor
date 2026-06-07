@@ -1,0 +1,99 @@
+/* pages/admin/index/index.wxss */
+.section-title {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 24rpx;
+}
+
+.data-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20rpx;
+}
+
+.data-item {
+	text-align: center;
+	padding: 24rpx;
+	background: #f8f9fa;
+	border-radius: 12rpx;
+}
+
+.data-num {
+	display: block;
+	font-size: 48rpx;
+	font-weight: bold;
+	color: #1890FF;
+}
+
+.data-label {
+	display: block;
+	font-size: 24rpx;
+	color: #999;
+	margin-top: 8rpx;
+}
+
+.menu-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 30rpx;
+}
+
+.menu-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.menu-item image {
+	width: 80rpx;
+	height: 80rpx;
+	margin-bottom: 12rpx;
+}
+
+.menu-item text {
+	font-size: 24rpx;
+	color: #666;
+}
+
+.action-list {
+	padding: 0;
+}
+
+.action-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 24rpx 0;
+	border-bottom: 1rpx solid #f0f0f0;
+}
+
+.action-item:last-child {
+	border-bottom: none;
+}
+
+.action-text {
+	font-size: 28rpx;
+	color: #333;
+}
+
+.action-right {
+	display: flex;
+	align-items: center;
+}
+
+.action-badge {
+	background: #FF4D4F;
+	color: #fff;
+	font-size: 22rpx;
+	padding: 2rpx 12rpx;
+	border-radius: 20rpx;
+	min-width: 32rpx;
+	text-align: center;
+	margin-right: 12rpx;
+}
+
+.action-arrow {
+	font-size: 32rpx;
+	color: #ccc;
+}

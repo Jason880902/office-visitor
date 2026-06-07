@@ -1,0 +1,55 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/visitor/apply/apply",
+		"pages/visitor/list/list",
+		"pages/visitor/detail/detail",
+		"pages/gate/scan/scan",
+		"pages/gate/verify/verify",
+		"pages/approve/list/list",
+		"pages/approve/detail/detail",
+		"pages/my/index/index",
+		"pages/admin/index/index",
+		"pages/admin/visitors/visitors",
+		"pages/admin/devices/devices"
+	],
+	"window": {
+		"backgroundColor": "#F6F6F6",
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#1890FF",
+		"navigationBarTitleText": "写字楼访客管理",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#1890FF",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页",
+				"iconPath": "images/tab/home.png",
+				"selectedIconPath": "images/tab/home-active.png"
+			},
+			{
+				"pagePath": "pages/visitor/list/list",
+				"text": "我的预约",
+				"iconPath": "images/tab/visitor.png",
+				"selectedIconPath": "images/tab/visitor-active.png"
+			},
+			{
+				"pagePath": "pages/my/index/index",
+				"text": "我的",
+				"iconPath": "images/tab/my.png",
+				"selectedIconPath": "images/tab/my-active.png"
+			}
+		]
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "获取位置用于访客签到"
+		}
+	},
+	"sitemapLocation": "sitemap.json",
+	"style": "v2"
+}

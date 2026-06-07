@@ -1,0 +1,80 @@
+<!--pages/index/index.wxml - 首页-->
+<view class="container">
+	<!-- 用户信息卡片 -->
+	<view class="card user-card">
+		<image class="avatar" src="{{userInfo.avatarUrl || '/images/default-avatar.png'}}" mode="aspectFill" />
+		<view class="user-info">
+			<text class="nick-name">{{userInfo.nickName || '未登录'}}</text>
+			<text class="role-text">{{roleText}}</text>
+		</view>
+		<view class="login-btn" bindtap="bindLogin" wx:if="{{!userInfo}}">
+			<text>点击登录</text>
+		</view>
+	</view>
+
+	<!-- 快捷操作 -->
+	<view class="card">
+		<view class="section-title">快捷操作</view>
+		<view class="action-grid">
+			<view class="action-item" bindtap="goApply">
+				<image src="/images/action/apply.png" mode="aspectFit" />
+				<text>访客预约</text>
+			</view>
+			<view class="action-item" bindtap="goMyList">
+				<image src="/images/action/list.png" mode="aspectFit" />
+				<text>我的预约</text>
+			</view>
+			<view class="action-item" bindtap="goScan" wx:if="{{isGatekeeper || isAdmin}}">
+				<image src="/images/action/scan.png" mode="aspectFit" />
+				<text>扫码核验</text>
+			</view>
+			<view class="action-item" bindtap="goApprove" wx:if="{{isApprover || isAdmin}}">
+				<image src="/images/action/approve.png" mode="aspectFit" />
+				<text>审批管理</text>
+			</view>
+			<view class="action-item" bindtap="goAdmin" wx:if="{{isAdmin}}">
+				<image src="/images/action/admin.png" mode="aspectFit" />
+				<text>后台管理</text>
+			</view>
+		</view>
+	</view>
+
+	<!-- 今日数据（管理员/审批人可见） -->
+	<view class="card" wx:if="{{isApprover || isAdmin}}">
+		<view class="section-title">今日数据</view>
+		<view class="data-grid">
+			<view class="data-item">
+				<text class="data-num">{{dashboard.todayCount || 0}}</text>
+				<text class="data-label">今日预约</text>
+			</view>
+			<view class="data-item">
+				<text class="data-num">{{dashboard.pendingCount || 0}}</text>
+				<text class="data-label">待审批</text>
+			</view>
+			<view class="data-item">
+				<text class="data-num">{{dashboard.visitedCount || 0}}</text>
+				<text class="data-label">已来访</text>
+			</view>
+		</view>
+	</view>
+
+	<!-- 最近预约 -->
+	<view class="card">
+		<view class="section-title">最近预约</view>
+		<view wx:if="{{recentList.length > 0}}">
+			<view class="list-item" wx:for="{{recentList}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+				<view class="list-item-header">
+					<text class="visitor-name">{{item.visitorName}}</text>
+					<text class="status-tag status-{{item.statusClass}}">{{item.statusText}}</text>
+				</view>
+				<view class="list-item-body">
+					<text>来访日期: {{item.visitDate}}</text>
+					<text>被访人: {{item.hostName}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="empty-state" wx:else>
+			<text>暂无预约记录</text>
+		</view>
+	</view>
+</view>

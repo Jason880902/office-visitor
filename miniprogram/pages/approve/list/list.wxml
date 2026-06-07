@@ -1,0 +1,62 @@
+<!--pages/approve/list/list.wxml - 审批列表-->
+<view class="container">
+	<!-- 状态筛选 -->
+	<view class="filter-bar">
+		<view class="filter-item {{currentStatus === 0 ? 'active' : ''}}" bindtap="onFilter" data-status="0">
+			待审批
+		</view>
+		<view class="filter-item {{currentStatus === 1 ? 'active' : ''}}" bindtap="onFilter" data-status="1">
+			已通过
+		</view>
+		<view class="filter-item {{currentStatus === 2 ? 'active' : ''}}" bindtap="onFilter" data-status="2">
+			已拒绝
+		</view>
+	</view>
+
+	<!-- 审批列表 -->
+	<view class="list-container">
+		<block wx:if="{{list.length > 0}}">
+			<view class="card approve-card" wx:for="{{list}}" wx:key="_id" bindtap="goDetail" data-id="{{item._id}}">
+				<view class="card-header">
+					<view class="visitor-info">
+						<text class="visitor-name">{{item.visitorName}}</text>
+						<text class="visitor-company" wx:if="{{item.visitorCompany}}">{{item.visitorCompany}}</text>
+					</view>
+					<text class="status-tag status-{{item.statusClass}}">{{item.statusText}}</text>
+				</view>
+
+				<view class="card-body">
+					<view class="info-row">
+						<text class="label">来访日期:</text>
+						<text class="value">{{item.visitDate}} {{item.visitTime}}</text>
+					</view>
+					<view class="info-row">
+						<text class="label">被访人:</text>
+						<text class="value">{{item.hostName}} {{item.hostFloor ? item.hostFloor + '楼' : ''}}</text>
+					</view>
+					<view class="info-row" wx:if="{{item.visitReason}}">
+						<text class="label">事由:</text>
+						<text class="value">{{item.visitReason}}</text>
+					</view>
+				</view>
+
+				<view class="card-footer" wx:if="{{item.status === 0}}">
+					<button class="btn-small btn-danger" catchtap="onReject" data-id="{{item._id}}">拒绝</button>
+					<button class="btn-small btn-success" catchtap="onPass" data-id="{{item._id}}">通过</button>
+				</view>
+			</view>
+		</block>
+
+		<!-- 空状态 -->
+		<view class="empty-state" wx:if="{{!loading && list.length === 0}}">
+			<image src="/images/empty.png" mode="aspectFit" />
+			<text>暂无审批记录</text>
+		</view>
+
+		<!-- 加载更多 -->
+		<view class="load-more" wx:if="{{hasMore}}">
+			<text wx:if="{{loading}}">加载中...</text>
+			<text wx:else bindtap="loadMore">加载更多</text>
+		</view>
+	</view>
+</view>

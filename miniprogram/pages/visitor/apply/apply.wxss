@@ -1,0 +1,34 @@
+/* pages/visitor/apply/apply.wxss */
+.required {
+	color: #FF4D4F;
+	margin-left: 4rpx;
+}
+
+.form-textarea {
+	width: 100%;
+	min-height: 120rpx;
+	padding: 10rpx;
+	font-size: 28rpx;
+}
+
+.picker-value {
+	padding: 10rpx;
+}
+
+.picker-value.placeholder {
+	color: #999;
+}
+
+.submit-area {
+	padding: 40rpx 20rpx;
+	padding-bottom: calc(40rpx + env(safe-area-inset-bottom));
+}
+
+.section-title {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20rpx;
+	padding-bottom: 16rpx;
+	border-bottom: 1rpx solid #f0f0f0;
+}

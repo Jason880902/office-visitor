@@ -1,0 +1,78 @@
+/* pages/approve/detail/detail.wxss */
+.status-card {
+	padding: 30rpx;
+}
+
+.status-bg-pending {
+	background: linear-gradient(135deg, #FFF7E6 0%, #FFE7BA 100%);
+}
+
+.status-bg-approved {
+	background: linear-gradient(135deg, #F6FFED 0%, #D9F7BE 100%);
+}
+
+.status-bg-rejected {
+	background: linear-gradient(135deg, #FFF2F0 0%, #FFCCC7 100%);
+}
+
+.status-text {
+	display: block;
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #333;
+}
+
+.status-desc {
+	display: block;
+	font-size: 24rpx;
+	color: #666;
+	margin-top: 8rpx;
+}
+
+.section-title {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: #333;
+	margin-bottom: 20rpx;
+	padding-bottom: 16rpx;
+	border-bottom: 1rpx solid #f0f0f0;
+}
+
+.detail-item {
+	display: flex;
+	padding: 16rpx 0;
+	border-bottom: 1rpx solid #f5f5f5;
+}
+
+.detail-item:last-child {
+	border-bottom: none;
+}
+
+.detail-label {
+	width: 180rpx;
+	color: #999;
+	font-size: 28rpx;
+}
+
+.detail-value {
+	flex: 1;
+	color: #333;
+	font-size: 28rpx;
+}
+
+.remark-text {
+	font-size: 28rpx;
+	color: #666;
+	line-height: 1.6;
+}
+
+.action-bar {
+	display: flex;
+	padding: 30rpx 20rpx;
+	padding-bottom: calc(30rpx + env(safe-area-inset-bottom));
+	gap: 20rpx;
+}
+
+.action-bar button {
+	flex: 1;
+}

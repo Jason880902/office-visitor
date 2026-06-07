@@ -1,0 +1,94 @@
+/* pages/my/index/index.wxss */
+.user-card {
+	display: flex;
+	align-items: center;
+	padding: 40rpx;
+}
+
+.avatar {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 50%;
+	margin-right: 30rpx;
+}
+
+.user-info {
+	flex: 1;
+}
+
+.nick-name {
+	display: block;
+	font-size: 34rpx;
+	font-weight: bold;
+	color: #333;
+}
+
+.phone {
+	display: block;
+	font-size: 26rpx;
+	color: #999;
+	margin-top: 8rpx;
+}
+
+.role-badge {
+	display: inline-block;
+	font-size: 22rpx;
+	color: #1890FF;
+	background: #E6F7FF;
+	padding: 4rpx 16rpx;
+	border-radius: 4rpx;
+	margin-top: 8rpx;
+}
+
+.menu-card {
+	padding: 0;
+}
+
+.menu-item {
+	display: flex;
+	align-items: center;
+	padding: 30rpx;
+	border-bottom: 1rpx solid #f0f0f0;
+}
+
+.menu-item:last-child {
+	border-bottom: none;
+}
+
+.menu-item image {
+	width: 40rpx;
+	height: 40rpx;
+	margin-right: 20rpx;
+}
+
+.menu-text {
+	flex: 1;
+	font-size: 28rpx;
+	color: #333;
+}
+
+.menu-arrow {
+	font-size: 32rpx;
+	color: #ccc;
+}
+
+.menu-badge {
+	background: #FF4D4F;
+	color: #fff;
+	font-size: 22rpx;
+	padding: 2rpx 12rpx;
+	border-radius: 20rpx;
+	min-width: 32rpx;
+	text-align: center;
+	margin-right: 12rpx;
+}
+
+.logout-btn {
+	margin: 40rpx 20rpx;
+	padding: 24rpx;
+	text-align: center;
+	background: #fff;
+	border-radius: 12rpx;
+	color: #FF4D4F;
+	font-size: 30rpx;
+}

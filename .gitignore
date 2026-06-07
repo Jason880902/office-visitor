@@ -1,0 +1,28 @@
+# 依赖
+node_modules/
+cloudfunctions/visitor/node_modules/
+
+# 小程序本地配置
+miniprogram/miniprogram_npm/
+project.private.config.json
+
+# 云开发本地配置
+.cloudbase/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+npm-debug.log*
+
+# 临时文件
+*.tmp
+*.temp

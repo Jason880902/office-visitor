@@ -1,0 +1,129 @@
+<!--pages/visitor/detail/detail.wxml - 预约详情-->
+<view class="container">
+	<!-- 状态卡片 -->
+	<view class="card status-card status-bg-{{statusClass}}">
+		<view class="status-icon">
+			<image src="/images/status/{{statusClass}}.png" mode="aspectFit" />
+		</view>
+		<view class="status-info">
+			<text class="status-text">{{statusText}}</text>
+			<text class="status-desc">{{statusDesc}}</text>
+		</view>
+	</view>
+
+	<!-- 预约信息 -->
+	<view class="card">
+		<view class="section-title">预约信息</view>
+
+		<view class="detail-item">
+			<text class="detail-label">预约编号</text>
+			<text class="detail-value">{{detail.orderNo}}</text>
+		</view>
+
+		<view class="detail-item">
+			<text class="detail-label">提交时间</text>
+			<text class="detail-value">{{detail.createTime}}</text>
+		</view>
+
+		<view class="detail-item">
+			<text class="detail-label">来访日期</text>
+			<text class="detail-value">{{detail.visitDate}} {{detail.visitTime}}</text>
+		</view>
+
+		<view class="detail-item">
+			<text class="detail-label">来访事由</text>
+			<text class="detail-value">{{detail.visitReason}}</text>
+		</view>
+	</view>
+
+	<!-- 访客信息 -->
+	<view class="card">
+		<view class="section-title">访客信息</view>
+
+		<view class="detail-item">
+			<text class="detail-label">访客姓名</text>
+			<text class="detail-value">{{detail.visitorName}}</text>
+		</view>
+
+		<view class="detail-item">
+			<text class="detail-label">手机号码</text>
+			<text class="detail-value" bindtap="callPhone" data-phone="{{detail.visitorPhone}}">{{detail.visitorPhone}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.visitorCompany}}">
+			<text class="detail-label">所属公司</text>
+			<text class="detail-value">{{detail.visitorCompany}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.carNumber}}">
+			<text class="detail-label">车牌号码</text>
+			<text class="detail-value">{{detail.carNumber}}</text>
+		</view>
+	</view>
+
+	<!-- 被访人信息 -->
+	<view class="card">
+		<view class="section-title">被访人信息</view>
+
+		<view class="detail-item">
+			<text class="detail-label">被访人</text>
+			<text class="detail-value">{{detail.hostName}}</text>
+		</view>
+
+		<view class="detail-item">
+			<text class="detail-label">联系电话</text>
+			<text class="detail-value" bindtap="callPhone" data-phone="{{detail.hostPhone}}">{{detail.hostPhone}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.hostCompany}}">
+			<text class="detail-label">所在公司</text>
+			<text class="detail-value">{{detail.hostCompany}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.hostFloor}}">
+			<text class="detail-label">所在楼层</text>
+			<text class="detail-value">{{detail.hostFloor}}楼</text>
+		</view>
+	</view>
+
+	<!-- 审批信息 -->
+	<view class="card" wx:if="{{detail.status === 1 || detail.status === 2}}">
+		<view class="section-title">审批信息</view>
+
+		<view class="detail-item" wx:if="{{detail.approverName}}">
+			<text class="detail-label">审批人</text>
+			<text class="detail-value">{{detail.approverName}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.approveTime}}">
+			<text class="detail-label">审批时间</text>
+			<text class="detail-value">{{detail.approveTime}}</text>
+		</view>
+
+		<view class="detail-item" wx:if="{{detail.rejectReason}}">
+			<text class="detail-label">拒绝原因</text>
+			<text class="detail-value text-danger">{{detail.rejectReason}}</text>
+		</view>
+	</view>
+
+	<!-- 通行码 -->
+	<view class="card qrcode-card" wx:if="{{detail.status === 1 && qrcodeUrl}}">
+		<view class="section-title">通行二维码</view>
+		<view class="qrcode-container">
+			<image class="qrcode-image" src="{{qrcodeUrl}}" mode="aspectFit" />
+			<text class="qrcode-tip">请向门卫出示此二维码</text>
+		</view>
+	</view>
+
+	<!-- 备注 -->
+	<view class="card" wx:if="{{detail.remark}}">
+		<view class="section-title">备注</view>
+		<text class="remark-text">{{detail.remark}}</text>
+	</view>
+
+	<!-- 操作按钮 -->
+	<view class="action-bar" wx:if="{{detail.status === 0 || detail.status === 1}}">
+		<button class="btn-danger" bindtap="onCancel" wx:if="{{detail.status === 0 || detail.status === 1}}">取消预约</button>
+		<button class="btn-primary" bindtap="onGetQrcode" wx:if="{{detail.status === 1 && !qrcodeUrl}}">获取通行码</button>
+	</view>
+</view>

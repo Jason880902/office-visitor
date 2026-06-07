@@ -1,0 +1,80 @@
+<!--pages/admin/devices/devices.wxml - 门禁设备管理-->
+<view class="container">
+	<view class="card">
+		<view class="section-header">
+			<text class="section-title">门禁设备列表</text>
+			<button class="btn-small btn-primary" bindtap="onAddDevice">添加设备</button>
+		</view>
+
+		<block wx:if="{{devices.length > 0}}">
+			<view class="device-item" wx:for="{{devices}}" wx:key="_id">
+				<view class="device-header">
+					<view class="device-info">
+						<text class="device-name">{{item.deviceName}}</text>
+						<text class="device-code">{{item.deviceCode}}</text>
+					</view>
+					<view class="device-status {{item.status === 1 ? 'online' : 'offline'}}">
+						{{item.status === 1 ? '在线' : '离线'}}
+					</view>
+				</view>
+				<view class="device-body">
+					<view class="info-row" wx:if="{{item.location}}">
+						<text class="label">位置:</text>
+						<text class="value">{{item.location}}</text>
+					</view>
+					<view class="info-row">
+						<text class="label">品牌:</text>
+						<text class="value">{{item.brand}}</text>
+					</view>
+				</view>
+				<view class="device-footer">
+					<button class="btn-small" bindtap="onTestDevice" data-id="{{item._id}}">测试连接</button>
+					<button class="btn-small btn-danger" bindtap="onDeleteDevice" data-id="{{item._id}}">删除</button>
+				</view>
+			</view>
+		</block>
+
+		<view class="empty-state" wx:if="{{devices.length === 0}}">
+			<text>暂无门禁设备</text>
+			<button class="btn-primary" bindtap="onAddDevice" style="margin-top: 20rpx;">添加设备</button>
+		</view>
+	</view>
+</view>
+
+<!-- 添加设备弹窗 -->
+<view class="modal-mask" wx:if="{{showModal}}" bindtap="hideModal">
+	<view class="modal-content" catchtap="preventHide">
+		<view class="modal-header">
+			<text class="modal-title">添加门禁设备</text>
+			<text class="modal-close" bindtap="hideModal">×</text>
+		</view>
+		<view class="modal-body">
+			<view class="form-item">
+				<text class="form-label">设备编码 <text class="required">*</text></text>
+				<input class="form-input" placeholder="请输入设备编码" value="{{addForm.deviceCode}}" bindinput="onAddInput" data-field="deviceCode" />
+			</view>
+			<view class="form-item">
+				<text class="form-label">设备名称 <text class="required">*</text></text>
+				<input class="form-input" placeholder="请输入设备名称" value="{{addForm.deviceName}}" bindinput="onAddInput" data-field="deviceName" />
+			</view>
+			<view class="form-item">
+				<text class="form-label">安装位置</text>
+				<input class="form-input" placeholder="请输入安装位置" value="{{addForm.location}}" bindinput="onAddInput" data-field="location" />
+			</view>
+			<view class="form-item">
+				<text class="form-label">设备品牌</text>
+				<picker mode="selector" range="{{brands}}" value="{{brandIndex}}" bindchange="onBrandChange">
+					<view class="form-input picker-value">{{brands[brandIndex] || '请选择品牌'}}</view>
+				</picker>
+			</view>
+			<view class="form-item" wx:if="{{addForm.brand === 'generic'}}">
+				<text class="form-label">API地址</text>
+				<input class="form-input" placeholder="http://device-ip/open" value="{{addForm.apiUrl}}" bindinput="onAddInput" data-field="apiUrl" />
+			</view>
+		</view>
+		<view class="modal-footer">
+			<button class="btn-cancel" bindtap="hideModal">取消</button>
+			<button class="btn-primary" bindtap="onSubmitDevice">确定</button>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,72 @@
+<!--pages/approve/detail/detail.wxml - 审批详情-->
+<view class="container">
+	<!-- 状态卡片 -->
+	<view class="card status-card status-bg-{{statusClass}}">
+		<view class="status-info">
+			<text class="status-text">{{statusText}}</text>
+			<text class="status-desc">{{statusDesc}}</text>
+		</view>
+	</view>
+
+	<!-- 访客信息 -->
+	<view class="card">
+		<view class="section-title">访客信息</view>
+		<view class="detail-item">
+			<text class="detail-label">访客姓名</text>
+			<text class="detail-value">{{detail.visitorName}}</text>
+		</view>
+		<view class="detail-item">
+			<text class="detail-label">手机号码</text>
+			<text class="detail-value" bindtap="callPhone" data-phone="{{detail.visitorPhone}}">{{detail.visitorPhone}}</text>
+		</view>
+		<view class="detail-item" wx:if="{{detail.visitorCompany}}">
+			<text class="detail-label">所属公司</text>
+			<text class="detail-value">{{detail.visitorCompany}}</text>
+		</view>
+		<view class="detail-item" wx:if="{{detail.carNumber}}">
+			<text class="detail-label">车牌号码</text>
+			<text class="detail-value">{{detail.carNumber}}</text>
+		</view>
+	</view>
+
+	<!-- 来访信息 -->
+	<view class="card">
+		<view class="section-title">来访信息</view>
+		<view class="detail-item">
+			<text class="detail-label">来访日期</text>
+			<text class="detail-value">{{detail.visitDate}} {{detail.visitTime}}</text>
+		</view>
+		<view class="detail-item">
+			<text class="detail-label">来访事由</text>
+			<text class="detail-value">{{detail.visitReason}}</text>
+		</view>
+		<view class="detail-item">
+			<text class="detail-label">被访人</text>
+			<text class="detail-value">{{detail.hostName}}</text>
+		</view>
+		<view class="detail-item">
+			<text class="detail-label">联系电话</text>
+			<text class="detail-value" bindtap="callPhone" data-phone="{{detail.hostPhone}}">{{detail.hostPhone}}</text>
+		</view>
+		<view class="detail-item" wx:if="{{detail.hostCompany}}">
+			<text class="detail-label">所在公司</text>
+			<text class="detail-value">{{detail.hostCompany}}</text>
+		</view>
+		<view class="detail-item" wx:if="{{detail.hostFloor}}">
+			<text class="detail-label">所在楼层</text>
+			<text class="detail-value">{{detail.hostFloor}}楼</text>
+		</view>
+	</view>
+
+	<!-- 备注 -->
+	<view class="card" wx:if="{{detail.remark}}">
+		<view class="section-title">备注</view>
+		<text class="remark-text">{{detail.remark}}</text>
+	</view>
+
+	<!-- 操作按钮 -->
+	<view class="action-bar" wx:if="{{detail.status === 0}}">
+		<button class="btn-danger" bindtap="onReject">拒绝</button>
+		<button class="btn-success" bindtap="onPass">通过</button>
+	</view>
+</view>
